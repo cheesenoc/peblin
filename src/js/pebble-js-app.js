@@ -42,16 +42,16 @@ function opendataTransportLocationSuccess(pos) {
         if(responseTextStationboard.length > 100) {
           opendataTransportSendToPebble(JSON.parse(responseTextStationboard));
         } else {
-          console.log('opendata-transport: API response for stationboard was bad. Wrong API key?');
+          console.log('opendata-transport: API response for stationboard was bad. Wrong URL?');
           Pebble.sendAppMessage({
-            'PeblinAppMessageKeyBadKey': 1
+            'PeblinAppMessageKeyBadLocationsUrl': 1
           });
         }
       });
     } else {
-      console.log('opendata-transport: API response for location was bad. Wrong API key?');
+      console.log('opendata-transport: API response for location was bad. Wrong URL?');
       Pebble.sendAppMessage({
-        'PeblinAppMessageKeyBadKey': 1
+        'PeblinAppMessageKeyBadStationboardUrl': 1
       });
     }
   });

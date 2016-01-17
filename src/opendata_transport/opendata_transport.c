@@ -6,7 +6,8 @@ typedef enum {
   PeblinAppMessageKeyLine,
   PeblinAppMessageKeyDestination,
   PeblinAppMessageKeyDeparture,
-  PeblinAppMessageKeyBadKey = 91,
+  PeblinAppMessageKeyBadLocationsUrl = 90,
+  PeblinAppMessageKeyBadStationboardUrl = 91,
   PeblinAppMessageKeyLocationUnavailable = 92
 } PeblinAppMessageKey;
 
@@ -44,10 +45,17 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
     APP_LOG(APP_LOG_LEVEL_DEBUG, "No reply received!");
   }
 
-  Tuple *err_tuple = dict_find(iter, PeblinAppMessageKeyBadKey);
+  Tuple *err_tuple = dict_find(iter, PeblinAppMessageKeyBadLocationsUrl);
   if(err_tuple) {
-    APP_LOG(APP_LOG_LEVEL_WARNING, "Bad key!");
-    s_status = OpendataTransportStatusBadKey;
+    APP_LOG(APP_LOG_LEVEL_WARNING, "Bad location url!");
+    s_status = OpendataTransportStatusBadLocationsUrl;
+    s_callback(s_info, s_status);
+  }
+
+  err_tuple = dict_find(iter, PeblinAppMessageKeyBadStationboardUrl);
+  if(err_tuple) {
+    APP_LOG(APP_LOG_LEVEL_WARNING, "Bad stationboard url!");
+    s_status = OpendataTransportStatusBadStationboardUrl;
     s_callback(s_info, s_status);
   }
 

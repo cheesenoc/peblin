@@ -15,7 +15,8 @@
     "PeblinAppMessageKeyLine": 2,
     "PeblinAppMessageKeyDestination": 3,
     "PeblinAppMessageKeyDeparture": 4,
-    "PeblinAppMessageKeyBadKey": 91,
+    "PeblinAppMessageKeyBadLocationsUrl": 90,
+    "PeblinAppMessageKeyBadStationboardUrl": 91,
     "PeblinAppMessageKeyLocationUnavailable": 92
   },
   "resources": {

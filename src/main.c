@@ -20,22 +20,25 @@ static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTra
     }
       break;
     case OpendataTransportStatusNotYetFetched:
-      text_layer_set_text(s_text_layer, "OpendataTransportStatusNotYetFetched");
+      text_layer_set_text(s_text_layer, "StatusNotYetFetched");
       break;
     case OpendataTransportStatusBluetoothDisconnected:
-      text_layer_set_text(s_text_layer, "OpendataTransportStatusBluetoothDisconnected");
+      text_layer_set_text(s_text_layer, "StatusBluetoothDisconnected");
       break;
     case OpendataTransportStatusPending:
-      text_layer_set_text(s_text_layer, "OpendataTransportStatusPending");
+      text_layer_set_text(s_text_layer, "StatusPending");
       break;
     case OpendataTransportStatusFailed:
-      text_layer_set_text(s_text_layer, "OpendataTransportStatusFailed");
+      text_layer_set_text(s_text_layer, "StatusFailed");
       break;
-    case OpendataTransportStatusBadKey:
-      text_layer_set_text(s_text_layer, "OpendataTransportStatusBadKey");
+    case OpendataTransportStatusBadLocationsUrl:
+      text_layer_set_text(s_text_layer, "StatusBadLocationUrl");
+      break;
+    case OpendataTransportStatusBadStationboardUrl:
+      text_layer_set_text(s_text_layer, "StatusBadStationboardUrl");
       break;
     case OpendataTransportStatusLocationUnavailable:
-      text_layer_set_text(s_text_layer, "OpendataTransportStatusLocationUnavailable");
+      text_layer_set_text(s_text_layer, "StatusLocationUnavailable");
       break;
   }
 }

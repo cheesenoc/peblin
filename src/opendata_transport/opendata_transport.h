@@ -16,8 +16,10 @@ typedef enum {
   OpendataTransportStatusFailed,
   //! OpendataTransport fetched and available
   OpendataTransportStatusAvailable,
-  //! API key was bad
-  OpendataTransportStatusBadKey,
+  //! Locations Url was bad
+  OpendataTransportStatusBadLocationsUrl,
+  //! Stationboard Url was bad
+  OpendataTransportStatusBadStationboardUrl,
   //! Location not available
   OpendataTransportStatusLocationUnavailable
 } OpendataTransportStatus;
