@@ -43,7 +43,6 @@ typedef void(OpendataTransportCallback)(OpendataTransportInfo *info, OpendataTra
 
 //! Initialize the opendata-transport library. The data is fetched after calling this, and should be accessed
 //! and stored once the callback returns data, if it is successful.
-//! @param api_key The API key or 'appid' from your OpenOpendataTransportMap account.
 void opendata_transport_init();
 
 //! Important: This uses the AppMessage system. You should only use AppMessage yourself

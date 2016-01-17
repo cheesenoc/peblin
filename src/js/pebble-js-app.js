@@ -1,6 +1,6 @@
 /*************************** OpendataTransport library start ****************************/
 
-function owmOpendataTransportXHR(url, type, callback) {
+function opendataTransportXHR(url, type, callback) {
   var xhr = new XMLHttpRequest();
   xhr.onload = function () {
     callback(this.responseText);
@@ -9,7 +9,7 @@ function owmOpendataTransportXHR(url, type, callback) {
   xhr.send();
 }
 
-function owmOpendataTransportSendToPebble(json) {
+function opendataTransportSendToPebble(json) {
   console.log('PeblinAppMessageKeyStop: ' + json.stationboard[0].stop.station.name);
   console.log('PeblinAppMessageKeyLine: ' + json.stationboard[0].name);
   console.log('PeblinAppMessageKeyDestination: ' + json.stationboard[0].to);
@@ -24,21 +24,19 @@ function owmOpendataTransportSendToPebble(json) {
   });
 }
 
-function owmOpendataTransportLocationSuccess(pos) {
+function opendataTransportLocationSuccess(pos) {
   var url = 'http://transport.opendata.ch/v1/stationboard?station=elfenau&limit=1';
 
   // get location, for later
   // var url = 'http://transport.opendata.ch/v1/location?x=' +
   //   pos.coords.latitude + '&y=' + pos.coords.longitude + '&limit=1';
 
-  // var url = 'http://api.openopendata-transportmap.org/data/2.5/opendata-transport?lat=' +
-  //   pos.coords.latitude + '&lon=' + pos.coords.longitude + '&appid=' + owmOpendataTransportAPIKey;
-  console.log('opendata-transport: Location success. Contacting OpenOpendataTransportMap.org: \n' + url);
+  console.log('opendata-transport: Location success. Contacting transport.opendata.ch: \n' + url);
 
-  owmOpendataTransportXHR(url, 'GET', function(responseText) {
+  opendataTransportXHR(url, 'GET', function(responseText) {
     console.log('opendata-transport: Got API response: \n' + responseText);
     if(responseText.length > 100) {
-      owmOpendataTransportSendToPebble(JSON.parse(responseText));
+      opendataTransportSendToPebble(JSON.parse(responseText));
     } else {
       console.log('opendata-transport: API response was bad. Wrong API key?');
       Pebble.sendAppMessage({
@@ -48,17 +46,17 @@ function owmOpendataTransportLocationSuccess(pos) {
   });
 }
 
-function owmOpendataTransportLocationError(err) {
+function opendataTransportLocationError(err) {
   console.log('opendata-transport: Location error');
   Pebble.sendAppMessage({
     'PeblinAppMessageKeyLocationUnavailable': 1
   });
 }
 
-function owmOpendataTransportHandler(dict) {
+function opendataTransportHandler(dict) {
   console.log('opendata-transport: Got fetch request from C app');
 
-  navigator.geolocation.getCurrentPosition(owmOpendataTransportLocationSuccess, owmOpendataTransportLocationError, {
+  navigator.geolocation.getCurrentPosition(opendataTransportLocationSuccess, opendataTransportLocationError, {
     timeout: 15000,
     maximumAge: 60000
   });
@@ -72,5 +70,5 @@ Pebble.addEventListener('ready', function(e) {
 
 Pebble.addEventListener('appmessage', function(e) {
   console.log('appmessage: ' + JSON.stringify(e.payload));
-  owmOpendataTransportHandler(e);
+  opendataTransportHandler(e);
 });
