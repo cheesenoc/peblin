@@ -14,15 +14,18 @@ static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTra
       static char timestamp[7];
       strftime(timestamp, 7, "%H:%M", localtime(&info->timestamp));
 
-      // APP_LOG(APP_LOG_LEVEL_DEBUG, timestamp);
+      time_t now = time(NULL);
+      int difference = (info->timestamp - now)/60;
+      APP_LOG(APP_LOG_LEVEL_DEBUG, "Time from now: %d minutes", difference);
 
       static char s_buffer[256];
       snprintf(s_buffer, sizeof(s_buffer),
-        "Closest station:\n%s\n\nLine/Destination:\n%s/%s\n\nDeparture: %s",
+        "Closest station:\n%s\n\nLine/Destination:\n%s/%s\n\nDeparture: %s\nThat's in %d'!",
         info->stop,
         info->line,
         info->destination,
-        timestamp
+        timestamp,
+        difference
         );
       text_layer_set_text(s_text_layer, s_buffer);
     }
