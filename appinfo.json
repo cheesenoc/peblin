@@ -1,0 +1,24 @@
+{
+  "uuid": "e3377284-90c7-4fd5-87b3-4dce0907a4ee",
+  "shortName": "peblin",
+  "longName": "Wemlin for Pebble",
+  "companyName": "Cheese",
+  "versionLabel": "0.1",
+  "sdkVersion": "3",
+  "targetPlatforms": ["aplite", "basalt", "chalk"],
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "OWMWeatherAppMessageKeyReply": 0,
+    "OWMWeatherAppMessageKeyStop": 1,
+    "OWMWeatherAppMessageKeyLine": 2,
+    "OWMWeatherAppMessageKeyDestination": 3,
+    "OWMWeatherAppMessageKeyDeparture": 4,
+    "OWMWeatherAppMessageKeyBadKey": 91,
+    "OWMWeatherAppMessageKeyLocationUnavailable": 92
+  },
+  "resources": {
+    "media": []
+  }
+}

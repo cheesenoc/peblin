@@ -1,0 +1,408 @@
+{
+  "station": {
+    "id": "008590063",
+    "name": "Bern, Elfenau",
+    "score": "101",
+    "coordinate": {
+      "type": "WGS84",
+      "x": 46.932635,
+      "y": 7.472777
+    },
+    "distance": null
+  },
+  "stationboard": [
+    {
+      "stop": {
+        "station": {
+          "id": "8590063",
+          "name": "Bern, Elfenau",
+          "score": null,
+          "coordinate": {
+            "type": "WGS84",
+            "x": 46.932635,
+            "y": 7.472777
+          },
+          "distance": null
+        },
+        "arrival": null,
+        "arrivalTimestamp": null,
+        "departure": "2016-01-17T05:33:00+0100",
+        "departureTimestamp": 1453005180,
+        "delay": null,
+        "platform": "",
+        "prognosis": {
+          "platform": null,
+          "arrival": null,
+          "departure": null,
+          "capacity1st": -1,
+          "capacity2nd": -1
+        },
+        "realtimeAvailability": null,
+        "location": {
+          "id": "8590063",
+          "name": "Bern, Elfenau",
+          "score": null,
+          "coordinate": {
+            "type": "WGS84",
+            "x": 46.932635,
+            "y": 7.472777
+          },
+          "distance": null
+        }
+      },
+      "name": "NFB 19",
+      "category": "NFB",
+      "categoryCode": 6,
+      "number": "19",
+      "operator": "SVB Auto",
+      "to": "Köniz, Blinzern",
+      "passList": [
+        {
+          "station": {
+            "id": "8588998",
+            "name": "Bern, Manuelstrasse",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.934307,
+              "y": 7.47053
+            },
+            "distance": null
+          },
+          "arrival": "2016-01-17T05:34:00+0100",
+          "arrivalTimestamp": 1453005240,
+          "departure": null,
+          "departureTimestamp": null,
+          "delay": null,
+          "platform": "",
+          "prognosis": {
+            "platform": null,
+            "arrival": null,
+            "departure": null,
+            "capacity1st": null,
+            "capacity2nd": null
+          },
+          "realtimeAvailability": null,
+          "location": {
+            "id": "8588998",
+            "name": "Bern, Manuelstrasse",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.934307,
+              "y": 7.47053
+            },
+            "distance": null
+          }
+        },
+        {
+          "station": {
+            "id": "8588997",
+            "name": "Bern, Luternauweg",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.934919,
+              "y": 7.466961
+            },
+            "distance": null
+          },
+          "arrival": "2016-01-17T05:35:00+0100",
+          "arrivalTimestamp": 1453005300,
+          "departure": null,
+          "departureTimestamp": null,
+          "delay": null,
+          "platform": "",
+          "prognosis": {
+            "platform": null,
+            "arrival": null,
+            "departure": null,
+            "capacity1st": null,
+            "capacity2nd": null
+          },
+          "realtimeAvailability": null,
+          "location": {
+            "id": "8588997",
+            "name": "Bern, Luternauweg",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.934919,
+              "y": 7.466961
+            },
+            "distance": null
+          }
+        },
+        {
+          "station": {
+            "id": "8589005",
+            "name": "Bern, Willadingweg",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.936698,
+              "y": 7.464525
+            },
+            "distance": null
+          },
+          "arrival": "2016-01-17T05:35:00+0100",
+          "arrivalTimestamp": 1453005300,
+          "departure": null,
+          "departureTimestamp": null,
+          "delay": null,
+          "platform": "",
+          "prognosis": {
+            "platform": null,
+            "arrival": null,
+            "departure": null,
+            "capacity1st": null,
+            "capacity2nd": null
+          },
+          "realtimeAvailability": null,
+          "location": {
+            "id": "8589005",
+            "name": "Bern, Willadingweg",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.936698,
+              "y": 7.464525
+            },
+            "distance": null
+          }
+        },
+        {
+          "station": {
+            "id": "8507061",
+            "name": "Bern, Brunnadernstrasse",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.941184,
+              "y": 7.463716
+            },
+            "distance": null
+          },
+          "arrival": "2016-01-17T05:37:00+0100",
+          "arrivalTimestamp": 1453005420,
+          "departure": null,
+          "departureTimestamp": null,
+          "delay": null,
+          "platform": "",
+          "prognosis": {
+            "platform": null,
+            "arrival": null,
+            "departure": null,
+            "capacity1st": null,
+            "capacity2nd": null
+          },
+          "realtimeAvailability": null,
+          "location": {
+            "id": "8507061",
+            "name": "Bern, Brunnadernstrasse",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.941184,
+              "y": 7.463716
+            },
+            "distance": null
+          }
+        },
+        {
+          "station": {
+            "id": "8507060",
+            "name": "Bern, Helvetiaplatz",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.943908,
+              "y": 7.449207
+            },
+            "distance": null
+          },
+          "arrival": "2016-01-17T05:44:00+0100",
+          "arrivalTimestamp": 1453005840,
+          "departure": null,
+          "departureTimestamp": null,
+          "delay": null,
+          "platform": "",
+          "prognosis": {
+            "platform": null,
+            "arrival": null,
+            "departure": null,
+            "capacity1st": null,
+            "capacity2nd": null
+          },
+          "realtimeAvailability": null,
+          "location": {
+            "id": "8507060",
+            "name": "Bern, Helvetiaplatz",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.943908,
+              "y": 7.449207
+            },
+            "distance": null
+          }
+        },
+        {
+          "station": {
+            "id": "8507110",
+            "name": "Bern, Zytglogge",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.947845,
+              "y": 7.4475
+            },
+            "distance": null
+          },
+          "arrival": "2016-01-17T05:45:00+0100",
+          "arrivalTimestamp": 1453005900,
+          "departure": null,
+          "departureTimestamp": null,
+          "delay": null,
+          "platform": "",
+          "prognosis": {
+            "platform": null,
+            "arrival": null,
+            "departure": null,
+            "capacity1st": null,
+            "capacity2nd": null
+          },
+          "realtimeAvailability": null,
+          "location": {
+            "id": "8507110",
+            "name": "Bern, Zytglogge",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.947845,
+              "y": 7.4475
+            },
+            "distance": null
+          }
+        },
+        {
+          "station": {
+            "id": "8576646",
+            "name": "Bern, Bahnhof",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.948106,
+              "y": 7.440209
+            },
+            "distance": null
+          },
+          "arrival": "2016-01-17T05:47:00+0100",
+          "arrivalTimestamp": 1453006020,
+          "departure": null,
+          "departureTimestamp": null,
+          "delay": null,
+          "platform": "",
+          "prognosis": {
+            "platform": null,
+            "arrival": null,
+            "departure": null,
+            "capacity1st": null,
+            "capacity2nd": null
+          },
+          "realtimeAvailability": null,
+          "location": {
+            "id": "8576646",
+            "name": "Bern, Bahnhof",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.948106,
+              "y": 7.440209
+            },
+            "distance": null
+          }
+        },
+        {
+          "station": {
+            "id": "8589991",
+            "name": "Bern, Monbijou",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.943764,
+              "y": 7.43602
+            },
+            "distance": null
+          },
+          "arrival": "2016-01-17T05:50:00+0100",
+          "arrivalTimestamp": 1453006200,
+          "departure": null,
+          "departureTimestamp": null,
+          "delay": null,
+          "platform": "",
+          "prognosis": {
+            "platform": null,
+            "arrival": null,
+            "departure": null,
+            "capacity1st": null,
+            "capacity2nd": null
+          },
+          "realtimeAvailability": null,
+          "location": {
+            "id": "8589991",
+            "name": "Bern, Monbijou",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.943764,
+              "y": 7.43602
+            },
+            "distance": null
+          }
+        },
+        {
+          "station": {
+            "id": "8589999",
+            "name": "Köniz, Blinzern",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.921174,
+              "y": 7.425179
+            },
+            "distance": null
+          },
+          "arrival": "2016-01-17T05:58:00+0100",
+          "arrivalTimestamp": 1453006680,
+          "departure": null,
+          "departureTimestamp": null,
+          "delay": null,
+          "platform": "",
+          "prognosis": {
+            "platform": null,
+            "arrival": null,
+            "departure": null,
+            "capacity1st": null,
+            "capacity2nd": null
+          },
+          "realtimeAvailability": null,
+          "location": {
+            "id": "8589999",
+            "name": "Köniz, Blinzern",
+            "score": null,
+            "coordinate": {
+              "type": "WGS84",
+              "x": 46.921174,
+              "y": 7.425179
+            },
+            "distance": null
+          }
+        }
+      ],
+      "capacity1st": null,
+      "capacity2nd": null,
+      "subcategory": "NFB"
+    }
+  ]
+}
