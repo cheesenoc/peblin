@@ -34,9 +34,9 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
     strncpy(s_info->destination, destination_tuple->value->cstring, OPENDATA_TRANSPORT_BUFFER_SIZE);
 
     Tuple *departure_tuple = dict_find(iter, PeblinAppMessageKeyDeparture);
-    strncpy(s_info->departure, departure_tuple->value->cstring, OPENDATA_TRANSPORT_BUFFER_SIZE);
+    // strncpy(s_info->departure, departure_tuple->value->int32, OPENDATA_TRANSPORT_BUFFER_SIZE);
 
-    // s_info->timestamp = time(NULL);
+    s_info->timestamp = (time_t)departure_tuple->value->int32;
 
     s_status = OpendataTransportStatusAvailable;
     app_message_deregister_callbacks();

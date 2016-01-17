@@ -13,14 +13,14 @@ function opendataTransportSendToPebble(json) {
   console.log('PeblinAppMessageKeyStop: ' + json.stationboard[0].stop.station.name);
   console.log('PeblinAppMessageKeyLine: ' + json.stationboard[0].name);
   console.log('PeblinAppMessageKeyDestination: ' + json.stationboard[0].to);
-  console.log('PeblinAppMessageKeyDeparture: ' + json.stationboard[0].stop.departure);
+  console.log('PeblinAppMessageKeyDeparture: ' + json.stationboard[0].stop.departureTimestamp);
 
   Pebble.sendAppMessage({
     'PeblinAppMessageKeyReply': 1,
     'PeblinAppMessageKeyStop': json.stationboard[0].stop.station.name,
     'PeblinAppMessageKeyLine': json.stationboard[0].name,
     'PeblinAppMessageKeyDestination': json.stationboard[0].to,
-    'PeblinAppMessageKeyDeparture': json.stationboard[0].stop.departure
+    'PeblinAppMessageKeyDeparture': json.stationboard[0].stop.departureTimestamp
   });
 }
 

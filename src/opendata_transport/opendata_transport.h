@@ -34,8 +34,8 @@ typedef struct {
   char destination[OPENDATA_TRANSPORT_BUFFER_SIZE];
   //! departure time, e.g. "23.13"
   char departure[OPENDATA_TRANSPORT_BUFFER_SIZE];
-  //! Date that the data was received
-  // time_t timestamp;
+  //! departure timestamp
+  time_t timestamp;
 } OpendataTransportInfo;
 
 //! Callback for a opendata-transport fetch

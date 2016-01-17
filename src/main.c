@@ -9,13 +9,21 @@ static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTra
   switch(status) {
     case OpendataTransportStatusAvailable:
     {
+      // APP_LOG(APP_LOG_LEVEL_DEBUG, "In main callback");
+
+      static char timestamp[7];
+      strftime(timestamp, 7, "%H:%M", localtime(&info->timestamp));
+
+      // APP_LOG(APP_LOG_LEVEL_DEBUG, timestamp);
+
       static char s_buffer[256];
       snprintf(s_buffer, sizeof(s_buffer),
-        "Closest station:\n%s\n\nLine/Destination:\n%s/%s\n\nDeparture:%s",
+        "Closest station:\n%s\n\nLine/Destination:\n%s/%s\n\nDeparture: %s",
         info->stop,
         info->line,
         info->destination,
-        info->departure);
+        timestamp
+        );
       text_layer_set_text(s_text_layer, s_buffer);
     }
       break;
@@ -54,7 +62,7 @@ static void window_load(Window *window) {
   s_text_layer = text_layer_create(PBL_IF_ROUND_ELSE(
     grect_inset(bounds, GEdgeInsets(20, 0, 0, 0)),
     bounds));
-  text_layer_set_text(s_text_layer, "Ready.");
+  text_layer_set_text(s_text_layer, "Peblin ready.");
   text_layer_set_text_alignment(s_text_layer, PBL_IF_ROUND_ELSE(GTextAlignmentCenter, GTextAlignmentLeft));
   layer_add_child(window_layer, text_layer_get_layer(s_text_layer));
 }
