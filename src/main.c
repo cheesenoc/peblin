@@ -1,13 +1,13 @@
 #include <pebble.h>
 
-#include "owm_weather/owm_weather.h"
+#include "opendata_transport/opendata_transport.h"
 
 static Window *s_window;
 static TextLayer *s_text_layer;
 
-static void weather_callback(OWMWeatherInfo *info, OWMWeatherStatus status) {
+static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTransportStatus status) {
   switch(status) {
-    case OWMWeatherStatusAvailable:
+    case OpendataTransportStatusAvailable:
     {
       static char s_buffer[256];
       snprintf(s_buffer, sizeof(s_buffer),
@@ -19,29 +19,29 @@ static void weather_callback(OWMWeatherInfo *info, OWMWeatherStatus status) {
       text_layer_set_text(s_text_layer, s_buffer);
     }
       break;
-    case OWMWeatherStatusNotYetFetched:
-      text_layer_set_text(s_text_layer, "OWMWeatherStatusNotYetFetched");
+    case OpendataTransportStatusNotYetFetched:
+      text_layer_set_text(s_text_layer, "OpendataTransportStatusNotYetFetched");
       break;
-    case OWMWeatherStatusBluetoothDisconnected:
-      text_layer_set_text(s_text_layer, "OWMWeatherStatusBluetoothDisconnected");
+    case OpendataTransportStatusBluetoothDisconnected:
+      text_layer_set_text(s_text_layer, "OpendataTransportStatusBluetoothDisconnected");
       break;
-    case OWMWeatherStatusPending:
-      text_layer_set_text(s_text_layer, "OWMWeatherStatusPending");
+    case OpendataTransportStatusPending:
+      text_layer_set_text(s_text_layer, "OpendataTransportStatusPending");
       break;
-    case OWMWeatherStatusFailed:
-      text_layer_set_text(s_text_layer, "OWMWeatherStatusFailed");
+    case OpendataTransportStatusFailed:
+      text_layer_set_text(s_text_layer, "OpendataTransportStatusFailed");
       break;
-    case OWMWeatherStatusBadKey:
-      text_layer_set_text(s_text_layer, "OWMWeatherStatusBadKey");
+    case OpendataTransportStatusBadKey:
+      text_layer_set_text(s_text_layer, "OpendataTransportStatusBadKey");
       break;
-    case OWMWeatherStatusLocationUnavailable:
-      text_layer_set_text(s_text_layer, "OWMWeatherStatusLocationUnavailable");
+    case OpendataTransportStatusLocationUnavailable:
+      text_layer_set_text(s_text_layer, "OpendataTransportStatusLocationUnavailable");
       break;
   }
 }
 
 static void js_ready_handler(void *context) {
-  owm_weather_fetch(weather_callback);
+  opendata_transport_fetch(opendata_transport_callback);
 }
 
 static void window_load(Window *window) {
@@ -70,13 +70,13 @@ static void init() {
   });
   window_stack_push(s_window, true);
 
-  owm_weather_init();
+  opendata_transport_init();
 
   app_timer_register(3000, js_ready_handler, NULL);
 }
 
 static void deinit() {
-  owm_weather_deinit();
+  opendata_transport_deinit();
 }
 
 int main() {

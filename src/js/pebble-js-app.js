@@ -1,6 +1,6 @@
-/*************************** Weather library start ****************************/
+/*************************** OpendataTransport library start ****************************/
 
-function owmWeatherXHR(url, type, callback) {
+function owmOpendataTransportXHR(url, type, callback) {
   var xhr = new XMLHttpRequest();
   xhr.onload = function () {
     callback(this.responseText);
@@ -9,62 +9,62 @@ function owmWeatherXHR(url, type, callback) {
   xhr.send();
 }
 
-function owmWeatherSendToPebble(json) {
-  console.log('OWMWeatherAppMessageKeyStop: ' + json.stationboard[0].stop.station.name);
-  console.log('OWMWeatherAppMessageKeyLine: ' + json.stationboard[0].name);
-  console.log('OWMWeatherAppMessageKeyDestination: ' + json.stationboard[0].to);
-  console.log('OWMWeatherAppMessageKeyDeparture: ' + json.stationboard[0].stop.departure);
+function owmOpendataTransportSendToPebble(json) {
+  console.log('PeblinAppMessageKeyStop: ' + json.stationboard[0].stop.station.name);
+  console.log('PeblinAppMessageKeyLine: ' + json.stationboard[0].name);
+  console.log('PeblinAppMessageKeyDestination: ' + json.stationboard[0].to);
+  console.log('PeblinAppMessageKeyDeparture: ' + json.stationboard[0].stop.departure);
 
   Pebble.sendAppMessage({
-    'OWMWeatherAppMessageKeyReply': 1,
-    'OWMWeatherAppMessageKeyStop': json.stationboard[0].stop.station.name,
-    'OWMWeatherAppMessageKeyLine': json.stationboard[0].name,
-    'OWMWeatherAppMessageKeyDestination': json.stationboard[0].to,
-    'OWMWeatherAppMessageKeyDeparture': json.stationboard[0].stop.departure
+    'PeblinAppMessageKeyReply': 1,
+    'PeblinAppMessageKeyStop': json.stationboard[0].stop.station.name,
+    'PeblinAppMessageKeyLine': json.stationboard[0].name,
+    'PeblinAppMessageKeyDestination': json.stationboard[0].to,
+    'PeblinAppMessageKeyDeparture': json.stationboard[0].stop.departure
   });
 }
 
-function owmWeatherLocationSuccess(pos) {
+function owmOpendataTransportLocationSuccess(pos) {
   var url = 'http://transport.opendata.ch/v1/stationboard?station=elfenau&limit=1';
 
   // get location, for later
   // var url = 'http://transport.opendata.ch/v1/location?x=' +
   //   pos.coords.latitude + '&y=' + pos.coords.longitude + '&limit=1';
 
-  // var url = 'http://api.openweathermap.org/data/2.5/weather?lat=' +
-  //   pos.coords.latitude + '&lon=' + pos.coords.longitude + '&appid=' + owmWeatherAPIKey;
-  console.log('owm-weather: Location success. Contacting OpenWeatherMap.org: \n' + url);
+  // var url = 'http://api.openopendata-transportmap.org/data/2.5/opendata-transport?lat=' +
+  //   pos.coords.latitude + '&lon=' + pos.coords.longitude + '&appid=' + owmOpendataTransportAPIKey;
+  console.log('opendata-transport: Location success. Contacting OpenOpendataTransportMap.org: \n' + url);
 
-  owmWeatherXHR(url, 'GET', function(responseText) {
-    console.log('owm-weather: Got API response: \n' + responseText);
+  owmOpendataTransportXHR(url, 'GET', function(responseText) {
+    console.log('opendata-transport: Got API response: \n' + responseText);
     if(responseText.length > 100) {
-      owmWeatherSendToPebble(JSON.parse(responseText));
+      owmOpendataTransportSendToPebble(JSON.parse(responseText));
     } else {
-      console.log('owm-weather: API response was bad. Wrong API key?');
+      console.log('opendata-transport: API response was bad. Wrong API key?');
       Pebble.sendAppMessage({
-        'OWMWeatherAppMessageKeyBadKey': 1
+        'PeblinAppMessageKeyBadKey': 1
       });
     }
   });
 }
 
-function owmWeatherLocationError(err) {
-  console.log('owm-weather: Location error');
+function owmOpendataTransportLocationError(err) {
+  console.log('opendata-transport: Location error');
   Pebble.sendAppMessage({
-    'OWMWeatherAppMessageKeyLocationUnavailable': 1
+    'PeblinAppMessageKeyLocationUnavailable': 1
   });
 }
 
-function owmWeatherHandler(dict) {
-  console.log('owm-weather: Got fetch request from C app');
+function owmOpendataTransportHandler(dict) {
+  console.log('opendata-transport: Got fetch request from C app');
 
-  navigator.geolocation.getCurrentPosition(owmWeatherLocationSuccess, owmWeatherLocationError, {
+  navigator.geolocation.getCurrentPosition(owmOpendataTransportLocationSuccess, owmOpendataTransportLocationError, {
     timeout: 15000,
     maximumAge: 60000
   });
 }
 
-/**************************** Weather library end *****************************/
+/**************************** OpendataTransport library end *****************************/
 
 Pebble.addEventListener('ready', function(e) {
   console.log('PebbleKit JS ready!');
@@ -72,5 +72,5 @@ Pebble.addEventListener('ready', function(e) {
 
 Pebble.addEventListener('appmessage', function(e) {
   console.log('appmessage: ' + JSON.stringify(e.payload));
-  owmWeatherHandler(e);
+  owmOpendataTransportHandler(e);
 });

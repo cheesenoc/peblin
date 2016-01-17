@@ -10,13 +10,13 @@
     "watchface": false
   },
   "appKeys": {
-    "OWMWeatherAppMessageKeyReply": 0,
-    "OWMWeatherAppMessageKeyStop": 1,
-    "OWMWeatherAppMessageKeyLine": 2,
-    "OWMWeatherAppMessageKeyDestination": 3,
-    "OWMWeatherAppMessageKeyDeparture": 4,
-    "OWMWeatherAppMessageKeyBadKey": 91,
-    "OWMWeatherAppMessageKeyLocationUnavailable": 92
+    "PeblinAppMessageKeyReply": 0,
+    "PeblinAppMessageKeyStop": 1,
+    "PeblinAppMessageKeyLine": 2,
+    "PeblinAppMessageKeyDestination": 3,
+    "PeblinAppMessageKeyDeparture": 4,
+    "PeblinAppMessageKeyBadKey": 91,
+    "PeblinAppMessageKeyLocationUnavailable": 92
   },
   "resources": {
     "media": []
