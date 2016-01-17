@@ -25,20 +25,31 @@ function opendataTransportSendToPebble(json) {
 }
 
 function opendataTransportLocationSuccess(pos) {
-  var url = 'http://transport.opendata.ch/v1/stationboard?station=elfenau&limit=1';
 
-  // get location, for later
-  // var url = 'http://transport.opendata.ch/v1/location?x=' +
-  //   pos.coords.latitude + '&y=' + pos.coords.longitude + '&limit=1';
+  var url_locations = 'http://transport.opendata.ch/v1/locations?x=' +
+    pos.coords.latitude + '&y=' + pos.coords.longitude + '&limit=1';
 
-  console.log('opendata-transport: Location success. Contacting transport.opendata.ch: \n' + url);
+  console.log('opendata-transport: Location success. Contacting transport.opendata.ch: \n' + url_locations);
 
-  opendataTransportXHR(url, 'GET', function(responseText) {
-    console.log('opendata-transport: Got API response: \n' + responseText);
-    if(responseText.length > 100) {
-      opendataTransportSendToPebble(JSON.parse(responseText));
+  opendataTransportXHR(url_locations, 'GET', function(responseTextLocation) {
+    console.log('opendata-transport: Got API response for location: \n' + responseTextLocation);
+    if(responseTextLocation.length > 100) {
+      var station_id = JSON.parse(responseTextLocation).stations[0].id; //'008590063' for 'Bern, Elfenau';
+      var url_stationboard = 'http://transport.opendata.ch/v1/stationboard?station=' + station_id + '&limit=1';
+
+      opendataTransportXHR(url_stationboard, 'GET', function(responseTextStationboard) {
+        console.log('opendata-transport: Got API response for stationboard: \n' + responseTextStationboard);
+        if(responseTextStationboard.length > 100) {
+          opendataTransportSendToPebble(JSON.parse(responseTextStationboard));
+        } else {
+          console.log('opendata-transport: API response for stationboard was bad. Wrong API key?');
+          Pebble.sendAppMessage({
+            'PeblinAppMessageKeyBadKey': 1
+          });
+        }
+      });
     } else {
-      console.log('opendata-transport: API response was bad. Wrong API key?');
+      console.log('opendata-transport: API response for location was bad. Wrong API key?');
       Pebble.sendAppMessage({
         'PeblinAppMessageKeyBadKey': 1
       });
