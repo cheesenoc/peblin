@@ -58,6 +58,10 @@ static void js_ready_handler(void *context) {
   opendata_transport_fetch(opendata_transport_callback);
 }
 
+static void tap_handler(AccelAxisType axis, int32_t direction) {
+  opendata_transport_fetch(opendata_transport_callback);
+}
+
 static void window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
@@ -87,10 +91,13 @@ static void init() {
   opendata_transport_init();
 
   app_timer_register(3000, js_ready_handler, NULL);
+
+  accel_tap_service_subscribe(tap_handler);
 }
 
 static void deinit() {
   opendata_transport_deinit();
+  accel_tap_service_unsubscribe();
 }
 
 int main() {
