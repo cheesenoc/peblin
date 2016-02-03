@@ -31,25 +31,25 @@ static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTra
     }
       break;
     case OpendataTransportStatusNotYetFetched:
-      text_layer_set_text(s_text_layer, "StatusNotYetFetched");
+      text_layer_set_text(s_text_layer, "\nStatusNotYetFetched");
       break;
     case OpendataTransportStatusBluetoothDisconnected:
-      text_layer_set_text(s_text_layer, "StatusBluetoothDisconnected");
+      text_layer_set_text(s_text_layer, "\nStatusBluetoothDisconnected");
       break;
     case OpendataTransportStatusPending:
-      text_layer_set_text(s_text_layer, "StatusPending");
+      text_layer_set_text(s_text_layer, "\nStatusPending");
       break;
     case OpendataTransportStatusFailed:
-      text_layer_set_text(s_text_layer, "StatusFailed");
+      text_layer_set_text(s_text_layer, "\nStatusFailed");
       break;
     case OpendataTransportStatusBadLocationsUrl:
-      text_layer_set_text(s_text_layer, "StatusBadLocationUrl");
+      text_layer_set_text(s_text_layer, "\nStatusBadLocationUrl");
       break;
     case OpendataTransportStatusBadStationboardUrl:
-      text_layer_set_text(s_text_layer, "StatusBadStationboardUrl");
+      text_layer_set_text(s_text_layer, "\nStatusBadStationboardUrl");
       break;
     case OpendataTransportStatusLocationUnavailable:
-      text_layer_set_text(s_text_layer, "StatusLocationUnavailable");
+      text_layer_set_text(s_text_layer, "\nStatusLocationUnavailable");
       break;
   }
 }
@@ -69,7 +69,7 @@ static void window_load(Window *window) {
   s_text_layer = text_layer_create(PBL_IF_ROUND_ELSE(
     grect_inset(bounds, GEdgeInsets(20, 0, 0, 0)),
     bounds));
-  text_layer_set_text(s_text_layer, "Peblin ready.");
+  text_layer_set_text(s_text_layer, "\nPeblin starting up.");
   text_layer_set_text_alignment(s_text_layer, PBL_IF_ROUND_ELSE(GTextAlignmentCenter, GTextAlignmentLeft));
   layer_add_child(window_layer, text_layer_get_layer(s_text_layer));
 }
