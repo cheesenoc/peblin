@@ -11,10 +11,8 @@
   },
   "appKeys": {
     "PeblinAppMessageKeyReply": 0,
-    "PeblinAppMessageKeyStop": 1,
-    "PeblinAppMessageKeyLine": 2,
-    "PeblinAppMessageKeyDestination": 3,
-    "PeblinAppMessageKeyDeparture": 4,
+    "PeblinAppMessageKeyStops": 1,
+    "PeblinAppMessageKeyTimes": 2,
     "PeblinAppMessageKeyBadLocationsUrl": 90,
     "PeblinAppMessageKeyBadStationboardUrl": 91,
     "PeblinAppMessageKeyLocationUnavailable": 92

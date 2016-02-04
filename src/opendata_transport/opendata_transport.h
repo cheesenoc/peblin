@@ -26,16 +26,11 @@ typedef enum {
 
 //! Struct containing opendata-transport data
 typedef struct {
-  //! stop e.g: "Bern, Elfenau"
-  char stop[OPENDATA_TRANSPORT_BUFFER_SIZE];
-  //! line e.g: "NFB19"
-  char line[OPENDATA_TRANSPORT_BUFFER_SIZE];
-  //! destination, e.g: "Blinzern, Köniz"
-  char destination[OPENDATA_TRANSPORT_BUFFER_SIZE];
-  //! departure time, e.g. "23.13"
-  char departure[OPENDATA_TRANSPORT_BUFFER_SIZE];
-  //! departure timestamp
-  time_t timestamp;
+  //! list of stops e.g: "Bern, Elfenau"
+  char stops[OPENDATA_TRANSPORT_BUFFER_SIZE];
+  //! list of times in minutes
+  char times[OPENDATA_TRANSPORT_BUFFER_SIZE];
+
 } OpendataTransportInfo;
 
 //! Callback for a opendata-transport fetch

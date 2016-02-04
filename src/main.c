@@ -21,25 +21,25 @@ static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTra
     {
       // APP_LOG(APP_LOG_LEVEL_DEBUG, "In main callback");
 
-      static char timestamp[7];
-      strftime(timestamp, 7, "%H:%M", localtime(&info->timestamp));
-
-      time_t now = time(NULL);
-      int difference = (info->timestamp - now)/60;
-      APP_LOG(APP_LOG_LEVEL_DEBUG, "Time from now: %d minutes", difference);
-
-      static char s_buffer[256];
-      snprintf(s_buffer, sizeof(s_buffer),
-        "Closest station:\n%s\n\nLine/Destination:\n%s/%s\n\nDeparture: %s\nThat's in %d'!",
-        info->stop,
-        info->line,
-        info->destination,
-        timestamp,
-        difference
-        );
+      // static char timestamp[7];
+      // strftime(timestamp, 7, "%H:%M", localtime(&info->timestamp));
+      //
+      // time_t now = time(NULL);
+      // int difference = (info->timestamp - now)/60;
+      // APP_LOG(APP_LOG_LEVEL_DEBUG, "Time from now: %d minutes", difference);
+      //
+      // static char s_buffer[256];
+      // snprintf(s_buffer, sizeof(s_buffer),
+      //   "Closest station:\n%s\n\ntime/Destination:\n%s/%s\n\nDeparture: %s\nThat's in %d'!",
+      //   info->stops,
+      //   info->times,
+      //   info->destination,
+      //   timestamp,
+      //   difference
+      //   );
       // text_layer_set_text(s_text_layer, s_buffer);
-      text_layer_set_text(s_content_layer, info->line);
-      text_layer_set_text(p_content_layer, info->stop);
+      text_layer_set_text(s_content_layer, info->times);
+      text_layer_set_text(p_content_layer, info->stops);
       GSize text_size = text_layer_get_content_size(s_content_layer);
       layer_set_frame(text_layer_get_layer(s_content_layer),
                       GRect(bounds.origin.x, bounds.origin.y, 45, text_size.h));

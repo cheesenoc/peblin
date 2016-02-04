@@ -10,32 +10,30 @@ function opendataTransportXHR(url, type, callback) {
 }
 
 function opendataTransportSendToPebble(json) {
-  var text = json.station.name + "\n";
-  var time = "\n";
-  var now = Date.now() / 1000 | 0;
-  console.log('now: ' + now);
+  var stops = json.station.name + "\n";
+  var times = "\n";
+  var now = Date.now();
+  // console.log('now: ' + now);
 
   for (var i = 0; i < json.stationboard.length; i++) {
-    text = text+json.stationboard[i].number + " " + json.stationboard[i].to + "\n";
-    console.log('timestamp: ' + json.stationboard[i].stop.departureTimestamp);
-    var sec = json.stationboard[i].stop.departureTimestamp - now;
-    console.log('sec: ' + sec);
-    var min = sec / 60 | 0;
-    console.log('min: ' + min);
-    time = time + min + "\n";
+    // console.log('timestamp: ' + json.stationboard[i].stop.departureTimestamp);
+    var sec = json.stationboard[i].stop.departureTimestamp * 1000 - now;
+    // console.log('sec: ' + sec);
+    var min = sec / 60000 | 0;
+    // console.log('min: ' + min);
+    if (min < 100) {
+      times = times + min + "\n";
+      stops = stops + json.stationboard[i].number + " " + json.stationboard[i].to + "\n";
+    }
   }
 
-  console.log('PeblinAppMessageKeyStop: ' + text);
-  console.log('PeblinAppMessageKeyLine: ' + time);
-  console.log('PeblinAppMessageKeyDestination: ' + json.stationboard[0].to);
-  console.log('PeblinAppMessageKeyDeparture: ' + json.stationboard[0].stop.departureTimestamp);
+  console.log('PeblinAppMessageKeyStops: ' + stops);
+  console.log('PeblinAppMessageKeyTimes: ' + times);
 
   Pebble.sendAppMessage({
     'PeblinAppMessageKeyReply': 1,
-    'PeblinAppMessageKeyStop': text,
-    'PeblinAppMessageKeyLine': time,
-    'PeblinAppMessageKeyDestination': json.stationboard[0].to,
-    'PeblinAppMessageKeyDeparture': json.stationboard[0].stop.departureTimestamp
+    'PeblinAppMessageKeyStops': stops,
+    'PeblinAppMessageKeyTimes': times
   });
 }
 

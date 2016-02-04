@@ -2,10 +2,8 @@
 
 typedef enum {
   PeblinAppMessageKeyReply,
-  PeblinAppMessageKeyStop,
-  PeblinAppMessageKeyLine,
-  PeblinAppMessageKeyDestination,
-  PeblinAppMessageKeyDeparture,
+  PeblinAppMessageKeyStops,
+  PeblinAppMessageKeyTimes,
   PeblinAppMessageKeyBadLocationsUrl = 90,
   PeblinAppMessageKeyBadStationboardUrl = 91,
   PeblinAppMessageKeyLocationUnavailable = 92
@@ -24,19 +22,11 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
   if(reply_tuple) {
     APP_LOG(APP_LOG_LEVEL_DEBUG, "Reply received!");
 
-    Tuple *stop_tuple = dict_find(iter, PeblinAppMessageKeyStop);
-    strncpy(s_info->stop, stop_tuple->value->cstring, OPENDATA_TRANSPORT_BUFFER_SIZE);
+    Tuple *stops_tuple = dict_find(iter, PeblinAppMessageKeyStops);
+    strncpy(s_info->stops, stops_tuple->value->cstring, OPENDATA_TRANSPORT_BUFFER_SIZE);
 
-    Tuple *line_tuple = dict_find(iter, PeblinAppMessageKeyLine);
-    strncpy(s_info->line, line_tuple->value->cstring, OPENDATA_TRANSPORT_BUFFER_SIZE);
-
-    Tuple *destination_tuple = dict_find(iter, PeblinAppMessageKeyDestination);
-    strncpy(s_info->destination, destination_tuple->value->cstring, OPENDATA_TRANSPORT_BUFFER_SIZE);
-
-    Tuple *departure_tuple = dict_find(iter, PeblinAppMessageKeyDeparture);
-    // strncpy(s_info->departure, departure_tuple->value->int32, OPENDATA_TRANSPORT_BUFFER_SIZE);
-
-    s_info->timestamp = (time_t)departure_tuple->value->int32;
+    Tuple *times_tuple = dict_find(iter, PeblinAppMessageKeyTimes);
+    strncpy(s_info->times, times_tuple->value->cstring, OPENDATA_TRANSPORT_BUFFER_SIZE);
 
     s_status = OpendataTransportStatusAvailable;
     app_message_deregister_callbacks();
