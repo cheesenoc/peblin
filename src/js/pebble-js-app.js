@@ -32,8 +32,8 @@ function opendataTransportSendToPebble(json) {
 
   Pebble.sendAppMessage({
     'PeblinAppMessageKeyReply': 1,
-    'PeblinAppMessageKeyStops': stops,
-    'PeblinAppMessageKeyTimes': times
+    'PeblinAppMessageKeyStops': stops + "\n",
+    'PeblinAppMessageKeyTimes': times + "\n"
   });
 }
 
@@ -42,16 +42,16 @@ function opendataTransportLocationSuccess(pos) {
   var url_locations = 'http://transport.opendata.ch/v1/locations?x=' +
     pos.coords.latitude + '&y=' + pos.coords.longitude + '&limit=1';
 
-  console.log('opendata-transport: Location success. Contacting transport.opendata.ch: \n' + url_locations);
+  // console.log('opendata-transport: Location success. Contacting transport.opendata.ch: \n' + url_locations);
 
   opendataTransportXHR(url_locations, 'GET', function(responseTextLocation) {
-    console.log('opendata-transport: Got API response for location: \n' + responseTextLocation);
+    // console.log('opendata-transport: Got API response for location: \n' + responseTextLocation);
     if(responseTextLocation.length > 100) {
       var station_id = JSON.parse(responseTextLocation).stations[0].id; //'008590063' for 'Bern, Elfenau';
       var url_stationboard = 'http://transport.opendata.ch/v1/stationboard?station=' + station_id + '&limit=10';
 
       opendataTransportXHR(url_stationboard, 'GET', function(responseTextStationboard) {
-        console.log('opendata-transport: Got API response for stationboard: \n' + responseTextStationboard);
+        // console.log('opendata-transport: Got API response for stationboard: \n' + responseTextStationboard);
         if(responseTextStationboard.length > 100) {
           opendataTransportSendToPebble(JSON.parse(responseTextStationboard));
         } else {

@@ -1,9 +1,9 @@
 {
   "uuid": "e3377284-90c7-4fd5-87b3-4dce0907a4ee",
   "shortName": "Peblin",
-  "longName": "Wemlin for Pebble",
-  "companyName": "Cheese",
-  "versionLabel": "0.1",
+  "longName": "Peblin - Wemlin for Pebble",
+  "companyName": "Dreamweb",
+  "versionLabel": "1.0",
   "sdkVersion": "3",
   "targetPlatforms": ["aplite", "basalt", "chalk"],
   "watchapp": {
