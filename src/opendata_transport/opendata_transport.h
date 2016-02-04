@@ -2,7 +2,7 @@
 
 #include <pebble.h>
 
-#define OPENDATA_TRANSPORT_BUFFER_SIZE 32
+#define OPENDATA_TRANSPORT_BUFFER_SIZE 512
 
 //! Possible statuses of the opendata-transport library
 typedef enum {
