@@ -38,7 +38,7 @@ static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTra
         difference
         );
       // text_layer_set_text(s_text_layer, s_buffer);
-      text_layer_set_text(s_content_layer, s_content);
+      text_layer_set_text(s_content_layer, info->line);
       text_layer_set_text(p_content_layer, info->stop);
       GSize text_size = text_layer_get_content_size(s_content_layer);
       layer_set_frame(text_layer_get_layer(s_content_layer),
