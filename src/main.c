@@ -12,6 +12,10 @@ static Layer *s_indicator_up_layer, *s_indicator_down_layer;
 static GRect bounds;
 
 static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTransportStatus status) {
+  layer_set_frame(text_layer_get_layer(times_content_layer),
+                  GRect(bounds.origin.x, bounds.origin.y, 45, 2000));
+  layer_set_frame(text_layer_get_layer(stops_content_layer),
+                  GRect(bounds.origin.x+50, bounds.origin.y, 500, 2000));
   switch(status) {
     case OpendataTransportStatusAvailable:
     {
@@ -19,43 +23,44 @@ static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTra
 
       text_layer_set_text(times_content_layer, info->times);
       text_layer_set_text(stops_content_layer, info->stops);
-      GSize text_size = text_layer_get_content_size(times_content_layer);
-      layer_set_frame(text_layer_get_layer(times_content_layer),
-                      GRect(bounds.origin.x, bounds.origin.y, 45, text_size.h));
-      layer_set_frame(text_layer_get_layer(stops_content_layer),
-                      GRect(bounds.origin.x+50, bounds.origin.y, 500, text_size.h));
-      scroll_layer_set_content_size(s_scroll_layer, text_size);
+
     }
       break;
     case OpendataTransportStatusNotYetFetched:
       text_layer_set_text(times_content_layer, "\n");
-      text_layer_set_text(stops_content_layer, "\nStatus\nNot Yet\nFetched");
+      text_layer_set_text(stops_content_layer, "\nStatus\nNot Yet\nFetched\n");
       break;
     case OpendataTransportStatusBluetoothDisconnected:
       text_layer_set_text(times_content_layer, "\n");
-      text_layer_set_text(stops_content_layer, "\nStatus\nBluetooth\nDisconnected");
+      text_layer_set_text(stops_content_layer, "\nStatus\nBluetooth\nDisconnected\n");
       break;
     case OpendataTransportStatusPending:
       text_layer_set_text(times_content_layer, "\n\n");
-      text_layer_set_text(stops_content_layer, "\nStatus\nPending");
+      text_layer_set_text(stops_content_layer, "\nStatus\nPending\n");
       break;
     case OpendataTransportStatusFailed:
       text_layer_set_text(times_content_layer, "\n");
-      text_layer_set_text(stops_content_layer, "\nStatus\nFailed");
+      text_layer_set_text(stops_content_layer, "\nStatus\nFailed\n");
       break;
     case OpendataTransportStatusBadLocationsUrl:
       text_layer_set_text(times_content_layer, "\n");
-      text_layer_set_text(stops_content_layer, "\nStatus\nBad Location Url");
+      text_layer_set_text(stops_content_layer, "\nStatus\nBad Location Url\n");
       break;
     case OpendataTransportStatusBadStationboardUrl:
       text_layer_set_text(times_content_layer, "\n");
-      text_layer_set_text(stops_content_layer, "\nStatus\nBad Stationboard Url");
+      text_layer_set_text(stops_content_layer, "\nStatus\nBad Stationboard Url\n");
       break;
     case OpendataTransportStatusLocationUnavailable:
       text_layer_set_text(times_content_layer, "\n");
-      text_layer_set_text(stops_content_layer, "\nStatus\nLocation\nUnavailable");
+      text_layer_set_text(stops_content_layer, "\nStatus\nLocation\nUnavailable\n");
       break;
   }
+  GSize text_size = text_layer_get_content_size(stops_content_layer);
+  layer_set_frame(text_layer_get_layer(times_content_layer),
+                  GRect(bounds.origin.x, bounds.origin.y, 45, text_size.h));
+  layer_set_frame(text_layer_get_layer(stops_content_layer),
+                  GRect(bounds.origin.x+50, bounds.origin.y, 500, text_size.h));
+  scroll_layer_set_content_size(s_scroll_layer, text_size);
 }
 
 static void js_ready_handler(void *context) {
@@ -115,15 +120,15 @@ static void window_load(Window *window) {
   times_content_layer = text_layer_create(GRect(bounds.origin.x, bounds.origin.y, 45, 2000));
   stops_content_layer = text_layer_create(GRect(bounds.origin.x+50, bounds.origin.y, 500, 2000));
 
-  text_layer_set_text(times_content_layer, "\n\n\n\n\n\n\n\n\n\n\n");
-  text_layer_set_text(stops_content_layer, "\nStarting\nPeblin");
+  text_layer_set_text(times_content_layer, "\n");
+  text_layer_set_text(stops_content_layer, "\nStarting\nPeblin\n");
   text_layer_set_text_alignment(times_content_layer, GTextAlignmentRight);
   text_layer_set_text_alignment(stops_content_layer, GTextAlignmentLeft);
   text_layer_set_font(times_content_layer, fonts_get_system_font(FONT_KEY_LECO_28_LIGHT_NUMBERS));
   text_layer_set_font(stops_content_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28));
   scroll_layer_add_child(s_scroll_layer, text_layer_get_layer(times_content_layer));
   scroll_layer_add_child(s_scroll_layer, text_layer_get_layer(stops_content_layer));
-  GSize text_size = text_layer_get_content_size(times_content_layer);
+  GSize text_size = text_layer_get_content_size(stops_content_layer);
   layer_set_frame(text_layer_get_layer(times_content_layer),
                   GRect(bounds.origin.x, bounds.origin.y, 45, text_size.h));
   layer_set_frame(text_layer_get_layer(stops_content_layer),
