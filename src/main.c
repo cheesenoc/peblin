@@ -10,6 +10,7 @@ static TextLayer *stops_content_layer;
 static ContentIndicator *s_indicator;
 static Layer *s_indicator_up_layer, *s_indicator_down_layer;
 static GRect bounds;
+static int number;
 
 static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTransportStatus status) {
   layer_set_frame(text_layer_get_layer(times_content_layer),
@@ -52,22 +53,25 @@ static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTra
   }
   GSize text_size = text_layer_get_content_size(stops_content_layer);
   layer_set_frame(text_layer_get_layer(times_content_layer),
-                  GRect(bounds.origin.x, bounds.origin.y, 45, text_size.h));
+                  GRect(bounds.origin.x, bounds.origin.y+STATUS_BAR_LAYER_HEIGHT, 45, text_size.h+STATUS_BAR_LAYER_HEIGHT));
   layer_set_frame(text_layer_get_layer(stops_content_layer),
-                  GRect(bounds.origin.x+50, bounds.origin.y, 500, text_size.h));
+                  GRect(bounds.origin.x+50, bounds.origin.y+STATUS_BAR_LAYER_HEIGHT, 500, text_size.h+STATUS_BAR_LAYER_HEIGHT));
   scroll_layer_set_content_size(s_scroll_layer, text_size);
 }
 
 static void js_ready_handler(void *context) {
-  opendata_transport_fetch(opendata_transport_callback);
+  number = 1;
+  opendata_transport_fetch(1, opendata_transport_callback);
 }
 
 static void tap_handler(AccelAxisType axis, int32_t direction) {
-  opendata_transport_fetch(opendata_transport_callback);
+  number = 1;
+  opendata_transport_fetch(1, opendata_transport_callback);
 }
 
 static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
-  opendata_transport_fetch(opendata_transport_callback);
+  number = number % 10 + 1;
+  opendata_transport_fetch(number, opendata_transport_callback);
 }
 
 static void click_config_provider(void *context) {
@@ -139,9 +143,9 @@ static void window_load(Window *window) {
   scroll_layer_add_child(s_scroll_layer, text_layer_get_layer(stops_content_layer));
   GSize text_size = text_layer_get_content_size(stops_content_layer);
   layer_set_frame(text_layer_get_layer(times_content_layer),
-                  GRect(bounds.origin.x, bounds.origin.y, 45, text_size.h));
+                  GRect(bounds.origin.x, bounds.origin.y+STATUS_BAR_LAYER_HEIGHT, 45, text_size.h+STATUS_BAR_LAYER_HEIGHT));
   layer_set_frame(text_layer_get_layer(stops_content_layer),
-                  GRect(bounds.origin.x+50, bounds.origin.y, 500, text_size.h));
+                  GRect(bounds.origin.x+50, bounds.origin.y+STATUS_BAR_LAYER_HEIGHT, 500, text_size.h+STATUS_BAR_LAYER_HEIGHT));
   scroll_layer_set_content_size(s_scroll_layer, text_size);
 }
 

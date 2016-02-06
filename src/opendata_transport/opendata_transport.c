@@ -63,13 +63,17 @@ static void fail_and_callback() {
   s_callback(s_info, s_status);
 }
 
-static bool fetch() {
+static bool fetch(int stop) {
   DictionaryIterator *out;
   AppMessageResult result = app_message_outbox_begin(&out);
   if(result != APP_MSG_OK) {
     fail_and_callback();
     return false;
   }
+
+  int value = stop;
+  dict_write_int(out, 1, &value, sizeof(int), true);
+  dict_write_end(out);
 
   result = app_message_outbox_send();
   if(result != APP_MSG_OK) {
@@ -91,7 +95,7 @@ void opendata_transport_init() {
   s_status = OpendataTransportStatusNotYetFetched;
 }
 
-bool opendata_transport_fetch(OpendataTransportCallback *callback) {
+bool opendata_transport_fetch(int stop, OpendataTransportCallback *callback) {
   if(!s_info) {
     APP_LOG(APP_LOG_LEVEL_ERROR, "OpendataTransport library is not initialized!");
     return false;
@@ -114,7 +118,7 @@ bool opendata_transport_fetch(OpendataTransportCallback *callback) {
   app_message_register_inbox_received(inbox_received_handler);
   app_message_open(2026, 656);
 
-  return fetch();
+  return fetch(stop);
 }
 
 void opendata_transport_deinit() {

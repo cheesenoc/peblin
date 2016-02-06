@@ -46,7 +46,7 @@ void opendata_transport_init();
 //! either before calling this, or after you have obtained your opendata-transport data.
 //! @param callback Callback to be called once the opendata-transport.
 //! @return true if the fetch message to PebbleKit JS was successful, false otherwise.
-bool opendata_transport_fetch(OpendataTransportCallback *callback);
+bool opendata_transport_fetch(int stop, OpendataTransportCallback *callback);
 
 //! Deinitialize and free the backing OpendataTransportInfo.
 void opendata_transport_deinit();
