@@ -18,13 +18,8 @@ static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTra
                   GRect(bounds.origin.x+50, bounds.origin.y, 500, 2000));
   switch(status) {
     case OpendataTransportStatusAvailable:
-    {
-      // APP_LOG(APP_LOG_LEVEL_DEBUG, "In main callback");
-
       text_layer_set_text(times_content_layer, info->times);
       text_layer_set_text(stops_content_layer, info->stops);
-
-    }
       break;
     case OpendataTransportStatusNotYetFetched:
       text_layer_set_text(times_content_layer, "\n");

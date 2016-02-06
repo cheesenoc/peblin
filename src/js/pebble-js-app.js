@@ -13,17 +13,26 @@ function opendataTransportSendToPebble(json) {
   var stops = json.station.name + "\n";
   var times = "\n";
   var now = Date.now();
+  var stop;
+  var sec;
+  var min;
+  var comma;
   // console.log('now: ' + now);
 
   for (var i = 0; i < json.stationboard.length; i++) {
     // console.log('timestamp: ' + json.stationboard[i].stop.departureTimestamp);
-    var sec = json.stationboard[i].stop.departureTimestamp * 1000 - now;
+    sec = json.stationboard[i].stop.departureTimestamp * 1000 - now;
     // console.log('sec: ' + sec);
-    var min = sec / 60000 | 0;
+    min = sec / 60000 | 0;
     // console.log('min: ' + min);
     if (min < 100) {
       times = times + min + "\n";
-      stops = stops + json.stationboard[i].number + " " + json.stationboard[i].to + "\n";
+      stop = json.stationboard[i].to;
+      comma = stop.indexOf(",");
+      if (comma > 2) {
+        stop = stop.substring(0, 2) + "." + stop.substring(comma+1);
+      }
+      stops = stops + json.stationboard[i].number + " " + stop + "\n";
     }
   }
 
@@ -82,9 +91,10 @@ function opendataTransportHandler(dict) {
 
   navigator.geolocation.getCurrentPosition(opendataTransportLocationSuccess, opendataTransportLocationError, {
     timeout: 15000,
-    maximumAge: 60000
+    maximumAge: 10000
   });
 }
+
 
 /**************************** OpendataTransport library end *****************************/
 
