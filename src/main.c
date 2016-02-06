@@ -66,13 +66,27 @@ static void tap_handler(AccelAxisType axis, int32_t direction) {
   opendata_transport_fetch(opendata_transport_callback);
 }
 
+static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
+  opendata_transport_fetch(opendata_transport_callback);
+}
+
+static void click_config_provider(void *context) {
+  // Register the ClickHandlers
+  // window_single_click_subscribe(BUTTON_ID_UP, up_click_handler);
+  window_single_click_subscribe(BUTTON_ID_SELECT, select_click_handler);
+  // window_single_click_subscribe(BUTTON_ID_DOWN, down_click_handler);
+}
+
 static void window_load(Window *window) {
 
   Layer *window_layer = window_get_root_layer(window);
   bounds = layer_get_bounds(window_layer);
 
   s_scroll_layer = scroll_layer_create(bounds);
+  // window_set_click_config_provider(window, click_config_provider);
   scroll_layer_set_click_config_onto_window(s_scroll_layer, window);
+  scroll_layer_set_callbacks(s_scroll_layer,  (ScrollLayerCallbacks){.click_config_provider=click_config_provider});
+
   scroll_layer_set_shadow_hidden(s_scroll_layer, true);
   layer_add_child(window_layer, scroll_layer_get_layer(s_scroll_layer));
 
