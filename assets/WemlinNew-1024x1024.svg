@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1024px" height="1024px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.1 (12002) - http://www.bohemiancoding.com/sketch -->
+    <title>WemlinNew-1024x1024</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="24.5414734%" y1="7.1144104%" x2="74.886322%" y2="92.4858093%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F5F5F5" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="0" y="0" width="1024" height="1024"></rect>
+        <linearGradient x1="21.8886719%" y1="0%" x2="76.265625%" y2="96.1210938%" id="linearGradient-4">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#E8E8E8" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-5" cx="512" cy="512" r="512"></circle>
+    </defs>
+    <g id="Watch-Icons-8-nomask" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Size-Guides" sketch:type="MSLayerGroup" transform="translate(0.000000, -124.000000)"></g>
+        <g id="WemlinNew-1024x1024" sketch:type="MSArtboardGroup">
+            <g id="Mask-+-ovIcon" sketch:type="MSLayerGroup">
+                <g id="ovIcon-2">
+                    <mask id="mask-3" sketch:name="Mask" fill="white">
+                        <use xlink:href="#path-2"></use>
+                    </mask>
+                    <use id="Mask" sketch:type="MSShapeGroup" xlink:href="#path-2"></use>
+                    <g id="ovIcon" mask="url(#mask-3)">
+                        <g transform="translate(0.000000, -73.280000)">
+                            <rect id="fill" fill="url(#linearGradient-4)" sketch:type="MSShapeGroup" x="0" y="73.28" width="1024" height="1024"></rect>
+                            <path d="M773.120007,636.48 L773.120006,534.08 L512,534.08 L512,636.48 L773.120007,636.48 Z" id="Line" fill="#94A8B3" sketch:type="MSShapeGroup"></path>
+                            <path d="M1081.69098,967.840188 L1154.09871,895.432452 L807.742376,549.076132 L735.334643,621.483868 L1081.69098,967.840188 Z" id="Line-6" fill="#94A8B3" sketch:type="MSShapeGroup"></path>
+                            <path d="M462.630586,605.917114 L551.129414,554.40287 L351.449414,211.362878 L262.950586,262.877122 L462.630586,605.917114 Z" id="Line-11" fill="#0085CD" sketch:type="MSShapeGroup"></path>
+                            <path d="M281.414648,289.436258 L353.822383,217.028524 L137.602912,0.809053183 L65.1951781,73.2167876 L281.414648,289.436258 Z" id="Line-5" fill="#94A8B3" sketch:type="MSShapeGroup"></path>
+                            <g id="Path-+-Oval-8" stroke-width="1" fill="none" sketch:type="MSLayerGroup" transform="translate(238.400000, 175.200000)">
+                                <path d="M154.6,76.8 C154.6,34.3845312 120.215469,0 77.8,0 C35.3845312,0 1,34.3845312 1,76.8 C1,119.215469 35.3845312,153.6 77.8,153.6 C120.215469,153.6 154.6,119.215469 154.6,76.8 Z" id="Path" fill="#000000" sketch:type="MSShapeGroup"></path>
+                                <path d="M24.04,76.8 C24.04,47.1091719 48.1091719,23.04 77.8,23.04 C107.490828,23.04 131.56,47.1091719 131.56,76.8 C131.56,106.490828 107.490828,130.56 77.8,130.56 C48.1091719,130.56 24.04,106.490828 24.04,76.8 Z" id="Oval-7" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+                            </g>
+                            <g id="connection" stroke-width="1" fill="none" sketch:type="MSLayerGroup" transform="translate(435.200000, 508.480000)">
+                                <path d="M153.6,76.8 C153.6,34.3845312 119.215469,0 76.8,0 C34.3845312,0 0,34.3845312 0,76.8 C0,119.215469 34.3845312,153.6 76.8,153.6 C119.215469,153.6 153.6,119.215469 153.6,76.8 Z" id="Path" fill="#000000" sketch:type="MSShapeGroup"></path>
+                                <path d="M23.04,76.8 C23.04,47.1091719 47.1091719,23.04 76.8,23.04 C106.490828,23.04 130.56,47.1091719 130.56,76.8 C130.56,106.490828 106.490828,130.56 76.8,130.56 C47.1091719,130.56 23.04,106.490828 23.04,76.8 Z" id="Oval-7" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+                            </g>
+                            <g id="connection-2" stroke-width="1" fill="none" sketch:type="MSLayerGroup" transform="translate(691.200000, 508.480000)">
+                                <path d="M153.6,76.8 C153.6,34.3845312 119.215469,0 76.8,0 C34.3845312,0 0,34.3845312 0,76.8 C0,119.215469 34.3845312,153.6 76.8,153.6 C119.215469,153.6 153.6,119.215469 153.6,76.8 Z" id="Path" fill="#94A8B3" sketch:type="MSShapeGroup"></path>
+                                <path d="M23.04,76.8 C23.04,47.1091719 47.1091719,23.04 76.8,23.04 C106.490828,23.04 130.56,47.1091719 130.56,76.8 C130.56,106.490828 106.490828,130.56 76.8,130.56 C47.1091719,130.56 23.04,106.490828 23.04,76.8 Z" id="Oval-7" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+                            </g>
+                            <g id="ticks" stroke-width="1" fill="none" sketch:type="MSLayerGroup" transform="translate(0.000000, 73.280000)">
+                                <path d="M0,499.2 L0,529.92 L51.2,529.92 L51.2,499.2 L0,499.2 Z" id="09:00" fill="#000000" sketch:type="MSShapeGroup"></path>
+                                <path d="M496.64,1024 L527.36,1024 L527.36,972.8 L496.64,972.8 L496.64,1024 Z" id="06:00" fill="#000000" sketch:type="MSShapeGroup"></path>
+                                <path d="M972.8,496.64 L972.8,527.36 L1024,527.36 L1024,496.64 L972.8,496.64 Z" id="03:00" fill="#000000" sketch:type="MSShapeGroup"></path>
+                                <path d="M496.64,51.2 L527.36,51.2 L527.36,-5.68434189e-14 L496.64,-5.68434189e-14 L496.64,51.2 Z" id="12:00" fill="#000000" sketch:type="MSShapeGroup"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <mask id="mask-6" sketch:name="Mask" fill="white">
+                    <use xlink:href="#path-5"></use>
+                </mask>
+                <use id="Mask" sketch:type="MSShapeGroup" xlink:href="#path-5"></use>
+            </g>
+        </g>
+    </g>
+</svg>
