@@ -28,7 +28,7 @@ typedef enum {
 typedef struct {
   //! list of stops e.g: "Bern, Elfenau"
   char stops[OPENDATA_TRANSPORT_BUFFER_SIZE];
-  //! list of times in minutes
+  //! list of departure times in minutes
   char times[OPENDATA_TRANSPORT_BUFFER_SIZE];
 
 } OpendataTransportInfo;

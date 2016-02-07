@@ -21,17 +21,13 @@ function shorten(stop) {
 }
 
 function opendataTransportSendToPebble(json) {
-  var stops = shorten(json.station.name) + "\n";
+  var stops = ": " + shorten(json.station.name) + "\n";
   var times = number + "\n";
   var now = Date.now();
-  // console.log('now: ' + now);
 
   for (var i = 0; i < json.stationboard.length; i++) {
-    // console.log('timestamp: ' + json.stationboard[i].stop.departureTimestamp);
     var sec = json.stationboard[i].stop.departureTimestamp * 1000 - now;
-    // console.log('sec: ' + sec);
     var min = sec / 60000 | 0;
-    // console.log('min: ' + min);
     if (min < 100) {
       times = times + min + "\n";
       stops = stops + json.stationboard[i].number + " " + shorten(json.stationboard[i].to) + "\n";
@@ -89,7 +85,6 @@ function opendataTransportLocationError(err) {
 }
 
 function opendataTransportHandler(dict) {
-  // console.log(dict.type);
   number = dict.payload.PeblinAppMessageKeyStops;
   console.log('opendata-transport: Got fetch request from C app with number: ' + number);
 
