@@ -1,4 +1,4 @@
-# Peblin - Wemlin for Pebble
+# Tramlin - Wemlin for Pebble
 
 ## Install
 - Build: `pebble build`

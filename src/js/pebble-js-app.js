@@ -34,13 +34,13 @@ function opendataTransportSendToPebble(json) {
     }
   }
 
-  console.log('PeblinAppMessageKeyStops: ' + stops);
-  console.log('PeblinAppMessageKeyTimes: ' + times);
+  console.log('TramlinAppMessageKeyStops: ' + stops);
+  console.log('TramlinAppMessageKeyTimes: ' + times);
 
   Pebble.sendAppMessage({
-    'PeblinAppMessageKeyReply': 1,
-    'PeblinAppMessageKeyStops': stops + "\n",
-    'PeblinAppMessageKeyTimes': times + "\n"
+    'TramlinAppMessageKeyReply': 1,
+    'TramlinAppMessageKeyStops': stops + "\n",
+    'TramlinAppMessageKeyTimes': times + "\n"
   });
 }
 
@@ -64,14 +64,14 @@ function opendataTransportLocationSuccess(pos) {
         } else {
           console.log('opendata-transport: API response for stationboard was bad. Wrong URL?');
           Pebble.sendAppMessage({
-            'PeblinAppMessageKeyBadStationboardUrl': 1
+            'TramlinAppMessageKeyBadStationboardUrl': 1
           });
         }
       });
     } else {
       console.log('opendata-transport: API response for location was bad. Wrong URL?');
       Pebble.sendAppMessage({
-        'PeblinAppMessageKeyBadLocationsUrl': 1
+        'TramlinAppMessageKeyBadLocationsUrl': 1
       });
     }
   });
@@ -80,12 +80,12 @@ function opendataTransportLocationSuccess(pos) {
 function opendataTransportLocationError(err) {
   console.log('opendata-transport: Location error');
   Pebble.sendAppMessage({
-    'PeblinAppMessageKeyLocationUnavailable': 1
+    'TramlinAppMessageKeyLocationUnavailable': 1
   });
 }
 
 function opendataTransportHandler(dict) {
-  number = dict.payload.PeblinAppMessageKeyStops;
+  number = dict.payload.TramlinAppMessageKeyStops;
   console.log('opendata-transport: Got fetch request from C app with number: ' + number);
 
   navigator.geolocation.getCurrentPosition(opendataTransportLocationSuccess, opendataTransportLocationError, {

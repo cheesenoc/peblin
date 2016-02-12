@@ -1,13 +1,13 @@
 #include "opendata_transport.h"
 
 typedef enum {
-  PeblinAppMessageKeyReply,
-  PeblinAppMessageKeyStops,
-  PeblinAppMessageKeyTimes,
-  PeblinAppMessageKeyBadLocationsUrl = 90,
-  PeblinAppMessageKeyBadStationboardUrl = 91,
-  PeblinAppMessageKeyLocationUnavailable = 92
-} PeblinAppMessageKey;
+  TramlinAppMessageKeyReply,
+  TramlinAppMessageKeyStops,
+  TramlinAppMessageKeyTimes,
+  TramlinAppMessageKeyBadLocationsUrl = 90,
+  TramlinAppMessageKeyBadStationboardUrl = 91,
+  TramlinAppMessageKeyLocationUnavailable = 92
+} TramlinAppMessageKey;
 
 static OpendataTransportInfo *s_info;
 static OpendataTransportCallback *s_callback;
@@ -17,15 +17,15 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
 
   APP_LOG(APP_LOG_LEVEL_DEBUG, "In received handler");
 
-  Tuple *reply_tuple = dict_find(iter, PeblinAppMessageKeyReply);
+  Tuple *reply_tuple = dict_find(iter, TramlinAppMessageKeyReply);
 
   if(reply_tuple) {
     APP_LOG(APP_LOG_LEVEL_DEBUG, "Reply received!");
 
-    Tuple *stops_tuple = dict_find(iter, PeblinAppMessageKeyStops);
+    Tuple *stops_tuple = dict_find(iter, TramlinAppMessageKeyStops);
     strncpy(s_info->stops, stops_tuple->value->cstring, OPENDATA_TRANSPORT_BUFFER_SIZE);
 
-    Tuple *times_tuple = dict_find(iter, PeblinAppMessageKeyTimes);
+    Tuple *times_tuple = dict_find(iter, TramlinAppMessageKeyTimes);
     strncpy(s_info->times, times_tuple->value->cstring, OPENDATA_TRANSPORT_BUFFER_SIZE);
 
     s_status = OpendataTransportStatusAvailable;
@@ -35,21 +35,21 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
     APP_LOG(APP_LOG_LEVEL_DEBUG, "No reply received!");
   }
 
-  Tuple *err_tuple = dict_find(iter, PeblinAppMessageKeyBadLocationsUrl);
+  Tuple *err_tuple = dict_find(iter, TramlinAppMessageKeyBadLocationsUrl);
   if(err_tuple) {
     APP_LOG(APP_LOG_LEVEL_WARNING, "Bad location url!");
     s_status = OpendataTransportStatusBadLocationsUrl;
     s_callback(s_info, s_status);
   }
 
-  err_tuple = dict_find(iter, PeblinAppMessageKeyBadStationboardUrl);
+  err_tuple = dict_find(iter, TramlinAppMessageKeyBadStationboardUrl);
   if(err_tuple) {
     APP_LOG(APP_LOG_LEVEL_WARNING, "Bad stationboard url!");
     s_status = OpendataTransportStatusBadStationboardUrl;
     s_callback(s_info, s_status);
   }
 
-  err_tuple = dict_find(iter, PeblinAppMessageKeyLocationUnavailable);
+  err_tuple = dict_find(iter, TramlinAppMessageKeyLocationUnavailable);
   if(err_tuple) {
     APP_LOG(APP_LOG_LEVEL_WARNING, "Location unavailable!");
     s_status = OpendataTransportStatusLocationUnavailable;

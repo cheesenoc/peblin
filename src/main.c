@@ -32,7 +32,7 @@ static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTra
       break;
     case OpendataTransportStatusPending:
       text_layer_set_text(times_content_layer, "\n\n");
-      text_layer_set_text(stops_content_layer, "\nPeblin\nLoading\n");
+      text_layer_set_text(stops_content_layer, "\nTramlin\nLoading\n");
       break;
     case OpendataTransportStatusFailed:
       text_layer_set_text(times_content_layer, "\n");
@@ -131,7 +131,7 @@ static void window_load(Window *window) {
   stops_content_layer = text_layer_create(GRect(bounds.origin.x+50, bounds.origin.y, 500, 2000));
 
   text_layer_set_text(times_content_layer, "\n");
-  text_layer_set_text(stops_content_layer, "\nPeblin\nStarting\n");
+  text_layer_set_text(stops_content_layer, "\nTramlin\nStarting\n");
   text_layer_set_text_alignment(times_content_layer, GTextAlignmentRight);
   text_layer_set_text_alignment(stops_content_layer, GTextAlignmentLeft);
   text_layer_set_font(times_content_layer, fonts_get_system_font(FONT_KEY_LECO_28_LIGHT_NUMBERS));
