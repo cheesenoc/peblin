@@ -1,4 +1,4 @@
-# Tramlin - Wemlin for Pebble
+# Tramlin - Something like Wemlin for Pebble
 
 ## Install
 - Build: `pebble build`
@@ -6,6 +6,6 @@
 - Install on phone: `pebble install -vvvv --logs --phone 192.168.1.116`
 
 ## Credits
-http://transport.opendata.ch/
-https://github.com/pebble-hacks/owm-weather/
-https://github.com/pebble-examples/content-indicator-demo/
+- http://transport.opendata.ch/
+- https://github.com/pebble-hacks/owm-weather/
+- https://github.com/pebble-examples/content-indicator-demo/
