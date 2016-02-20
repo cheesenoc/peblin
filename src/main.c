@@ -32,7 +32,9 @@ static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTra
       break;
     case OpendataTransportStatusPending:
       text_layer_set_text(times_content_layer, "\n\n");
-      text_layer_set_text(stops_content_layer, "\nTramlin\nLoading\n");
+      static char text[25];
+      snprintf(text, sizeof(text), "%s%d", "\nTramlin\nLoading\nStop ", number);
+      text_layer_set_text(stops_content_layer, text);
       break;
     case OpendataTransportStatusFailed:
       text_layer_set_text(times_content_layer, "\n");
