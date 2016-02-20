@@ -11,6 +11,9 @@ static ContentIndicator *s_indicator;
 static Layer *s_indicator_up_layer, *s_indicator_down_layer;
 static GRect bounds;
 static int number;
+static char s_time_buffer[16];
+static char stops[512];
+static char text[25];
 
 static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTransportStatus status) {
   layer_set_frame(text_layer_get_layer(times_content_layer),
@@ -19,8 +22,10 @@ static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTra
                   GRect(bounds.origin.x+50, bounds.origin.y, 500, 2000));
   switch(status) {
     case OpendataTransportStatusAvailable:
+      clock_copy_time_string(s_time_buffer, sizeof(s_time_buffer));
+      snprintf(stops, sizeof(stops), "   %s\n%s", s_time_buffer, info->stops);
       text_layer_set_text(times_content_layer, info->times);
-      text_layer_set_text(stops_content_layer, info->stops);
+      text_layer_set_text(stops_content_layer, stops);
       break;
     case OpendataTransportStatusNotYetFetched:
       text_layer_set_text(times_content_layer, "\n");
@@ -31,9 +36,8 @@ static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTra
       text_layer_set_text(stops_content_layer, "\nStatus\nBluetooth\nDisconnected\n");
       break;
     case OpendataTransportStatusPending:
-      text_layer_set_text(times_content_layer, "\n\n");
-      static char text[25];
-      snprintf(text, sizeof(text), "%s%d", "\nTramlin\nLoading\nStop ", number);
+      text_layer_set_text(times_content_layer, "\n");
+      snprintf(text, sizeof(text), "%s%d", "\n\nLoading\nStop ", number);
       text_layer_set_text(stops_content_layer, text);
       break;
     case OpendataTransportStatusFailed:
@@ -55,9 +59,9 @@ static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTra
   }
   GSize text_size = text_layer_get_content_size(stops_content_layer);
   layer_set_frame(text_layer_get_layer(times_content_layer),
-                  GRect(bounds.origin.x, bounds.origin.y+STATUS_BAR_LAYER_HEIGHT, 45, text_size.h+STATUS_BAR_LAYER_HEIGHT));
+                  GRect(bounds.origin.x, bounds.origin.y, 45, text_size.h));
   layer_set_frame(text_layer_get_layer(stops_content_layer),
-                  GRect(bounds.origin.x+50, bounds.origin.y+STATUS_BAR_LAYER_HEIGHT, 500, text_size.h+STATUS_BAR_LAYER_HEIGHT));
+                  GRect(bounds.origin.x+50, bounds.origin.y, 500, text_size.h));
   scroll_layer_set_content_size(s_scroll_layer, text_size);
 }
 
