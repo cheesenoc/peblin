@@ -2,6 +2,9 @@
 
 #include "opendata_transport/opendata_transport.h"
 
+#define TIME_WIDTH 30
+#define TIME_PADDING 2
+
 static Window *s_window;
 
 static ScrollLayer *s_scroll_layer;
@@ -15,53 +18,62 @@ static char s_time_buffer[16];
 static char stops[512];
 static char text[25];
 
+
 static void opendata_transport_callback(OpendataTransportInfo *info, OpendataTransportStatus status) {
   layer_set_frame(text_layer_get_layer(times_content_layer),
-                  GRect(bounds.origin.x, bounds.origin.y, 45, 2000));
+                  GRect(bounds.origin.x, bounds.origin.y, TIME_WIDTH, 2000));
   layer_set_frame(text_layer_get_layer(stops_content_layer),
-                  GRect(bounds.origin.x+50, bounds.origin.y, 500, 2000));
+                  GRect(bounds.origin.x+TIME_WIDTH+TIME_PADDING, bounds.origin.y, 500, 2000));
   switch(status) {
     case OpendataTransportStatusAvailable:
+      text_layer_set_background_color(times_content_layer, GColorBlack);
       clock_copy_time_string(s_time_buffer, sizeof(s_time_buffer));
-      snprintf(stops, sizeof(stops), "   %s\n%s", s_time_buffer, info->stops);
+      snprintf(stops, sizeof(stops), "      %s\n%s", s_time_buffer, info->stops);
       text_layer_set_text(times_content_layer, info->times);
       text_layer_set_text(stops_content_layer, stops);
       break;
     case OpendataTransportStatusNotYetFetched:
+      text_layer_set_background_color(times_content_layer, GColorWhite);
       text_layer_set_text(times_content_layer, "\n");
       text_layer_set_text(stops_content_layer, "\nStatus\nNot Yet\nFetched\n");
       break;
     case OpendataTransportStatusBluetoothDisconnected:
+      text_layer_set_background_color(times_content_layer, GColorWhite);
       text_layer_set_text(times_content_layer, "\n");
       text_layer_set_text(stops_content_layer, "\nStatus\nBluetooth\nDisconnected\n");
       break;
     case OpendataTransportStatusPending:
+      text_layer_set_background_color(times_content_layer, GColorWhite);
       text_layer_set_text(times_content_layer, "\n");
       snprintf(text, sizeof(text), "%s%d", "\n\nLoading\nStop ", number);
       text_layer_set_text(stops_content_layer, text);
       break;
     case OpendataTransportStatusFailed:
+      text_layer_set_background_color(times_content_layer, GColorWhite);
       text_layer_set_text(times_content_layer, "\n");
       text_layer_set_text(stops_content_layer, "\nStatus\nFailed\n");
       break;
     case OpendataTransportStatusBadLocationsUrl:
+      text_layer_set_background_color(times_content_layer, GColorWhite);
       text_layer_set_text(times_content_layer, "\n");
       text_layer_set_text(stops_content_layer, "\nStatus\nBad Location Url\n");
       break;
     case OpendataTransportStatusBadStationboardUrl:
+      text_layer_set_background_color(times_content_layer, GColorWhite);
       text_layer_set_text(times_content_layer, "\n");
       text_layer_set_text(stops_content_layer, "\nStatus\nBad Stationboard Url\n");
       break;
     case OpendataTransportStatusLocationUnavailable:
+      text_layer_set_background_color(times_content_layer, GColorWhite);
       text_layer_set_text(times_content_layer, "\n");
       text_layer_set_text(stops_content_layer, "\nStatus\nLocation\nUnavailable\n");
       break;
   }
   GSize text_size = text_layer_get_content_size(stops_content_layer);
   layer_set_frame(text_layer_get_layer(times_content_layer),
-                  GRect(bounds.origin.x, bounds.origin.y, 45, text_size.h));
+                  GRect(bounds.origin.x, bounds.origin.y, TIME_WIDTH, text_size.h));
   layer_set_frame(text_layer_get_layer(stops_content_layer),
-                  GRect(bounds.origin.x+50, bounds.origin.y, 500, text_size.h));
+                  GRect(bounds.origin.x+TIME_WIDTH+TIME_PADDING, bounds.origin.y, 500, text_size.h));
   scroll_layer_set_content_size(s_scroll_layer, text_size);
 }
 
@@ -133,22 +145,23 @@ static void window_load(Window *window) {
   content_indicator_configure_direction(s_indicator, ContentIndicatorDirectionDown,
                                         &down_config);
 
-  times_content_layer = text_layer_create(GRect(bounds.origin.x, bounds.origin.y, 45, 2000));
-  stops_content_layer = text_layer_create(GRect(bounds.origin.x+50, bounds.origin.y, 500, 2000));
+  times_content_layer = text_layer_create(GRect(bounds.origin.x, bounds.origin.y, TIME_WIDTH, 2000));
+  stops_content_layer = text_layer_create(GRect(bounds.origin.x+TIME_WIDTH+TIME_PADDING, bounds.origin.y, 500, 2000));
 
-  text_layer_set_text(times_content_layer, "\n");
-  text_layer_set_text(stops_content_layer, "\nTramlin\nStarting\n");
+  text_layer_set_text(times_content_layer, "\n\n\n");
+  text_layer_set_text(stops_content_layer, "\n Tramlin\nStarting\n");
   text_layer_set_text_alignment(times_content_layer, GTextAlignmentRight);
   text_layer_set_text_alignment(stops_content_layer, GTextAlignmentLeft);
-  text_layer_set_font(times_content_layer, fonts_get_system_font(FONT_KEY_LECO_28_LIGHT_NUMBERS));
+  text_layer_set_text_color(times_content_layer, GColorWhite);
+  text_layer_set_font(times_content_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28));
   text_layer_set_font(stops_content_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28));
   scroll_layer_add_child(s_scroll_layer, text_layer_get_layer(times_content_layer));
   scroll_layer_add_child(s_scroll_layer, text_layer_get_layer(stops_content_layer));
   GSize text_size = text_layer_get_content_size(stops_content_layer);
   layer_set_frame(text_layer_get_layer(times_content_layer),
-                  GRect(bounds.origin.x, bounds.origin.y+STATUS_BAR_LAYER_HEIGHT, 45, text_size.h+STATUS_BAR_LAYER_HEIGHT));
+                  GRect(bounds.origin.x, bounds.origin.y+STATUS_BAR_LAYER_HEIGHT, TIME_WIDTH, text_size.h+STATUS_BAR_LAYER_HEIGHT));
   layer_set_frame(text_layer_get_layer(stops_content_layer),
-                  GRect(bounds.origin.x+50, bounds.origin.y+STATUS_BAR_LAYER_HEIGHT, 500, text_size.h+STATUS_BAR_LAYER_HEIGHT));
+                  GRect(bounds.origin.x+TIME_WIDTH+TIME_PADDING, bounds.origin.y+STATUS_BAR_LAYER_HEIGHT, 500, text_size.h+STATUS_BAR_LAYER_HEIGHT));
   scroll_layer_set_content_size(s_scroll_layer, text_size);
 }
 
@@ -172,7 +185,7 @@ static void init() {
 
   opendata_transport_init();
 
-  app_timer_register(3000, js_ready_handler, NULL);
+  app_timer_register(1000, js_ready_handler, NULL);
 
   accel_tap_service_subscribe(tap_handler);
 }

@@ -14,7 +14,7 @@ function shorten(stop) {
   // console.log('shorten:' + stop);
   var comma = stop.indexOf(",");
   if (comma > 2) {
-    return stop.substring(0, 2) + "." + stop.substring(comma+1);
+    return stop.substring(0, 2) + "." + stop.substring(comma);
   } else {
     return stop;
   }
@@ -22,15 +22,15 @@ function shorten(stop) {
 
 function opendataTransportSendToPebble(json) {
   var now = Date.now();
-  var stops = ": " + shorten(json.station.name) + "\n";
-  var times = "\n" + number + "\n";
+  var stops = shorten(json.station.name) + "\n";
+  var times = "\n \n";
 
   for (var i = 0; i < json.stationboard.length; i++) {
     var sec = json.stationboard[i].stop.departureTimestamp * 1000 - now;
     var min = sec / 60000 | 0;
     if (min < 100) {
       times = times + min + "\n";
-      stops = stops + json.stationboard[i].number + " " + shorten(json.stationboard[i].to) + "\n";
+      stops = stops + json.stationboard[i].number + shorten(json.stationboard[i].to) + "\n";
     }
   }
 
